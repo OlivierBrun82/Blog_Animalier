@@ -8,29 +8,26 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ post.id }}</td>
+                <th>Titre: </th>
+                <td>{{ post.title }}</td>
             </tr>
             <tr>
-                <th>Name</th>
-                <td>{{ post.name }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
+                <th>Post: </th>
                 <td>{{ post.content }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Post crée par: </th>
+                <td>{{ post.name }}</td>
+            </tr>
+            <tr>
+                <th>Crée le: </th>
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Modifié le: </th>
                 <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ post.title }}</td>
-            </tr>
+
         </tbody>
     </table>
 
