@@ -7,6 +7,7 @@ use App\Entity\Type;
 use Doctrine\DBAL\Types\StringType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -39,8 +40,10 @@ class PostType extends AbstractType
             ])
             ->add('type', EntityType::class, [
                 'class' => Type::class,
-                'choice_label' => 'id',
-            ])
+                'choice_label' => 'name', // champ à afficher dans le select
+                'label' => 'Type',
+                'placeholder' => 'Choisir un type',
+])
             ->add('img', FileType::class, [
                 'label' => 'illustration',
                 'mapped' => false
