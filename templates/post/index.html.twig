@@ -4,28 +4,28 @@
 
 {% block body %}
     <h1>Post index</h1>
+    <div><a href="{{ path('app_post_new') }}">Créer un nouveau post</a></div>
+    <div><a href="{{ path('app_type_new') }}">Créer un nouveau type</a></div>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
+                <th>Pseudo</th>
+                <th>Titre</th>
+                <th>Post</th>
+                <th>Crée le</th>
                 <th>UpdatedAt</th>
-                <th>Title</th>
                 <th>actions</th>
             </tr>
         </thead>
         <tbody>
         {% for post in posts %}
             <tr>
-                <td>{{ post.id }}</td>
                 <td>{{ post.name }}</td>
-                <td>{{ post.content }}</td>
-                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ post.title }}</td>
+                <td>{{ post.title }}.</td>
+                <td>{{ post.content }}.</td>
+                <td>{{ post.createdAt ? post.createdAt|date('Y-m-d') : '' }}.</td>
+                <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d') : '' }}</td>
                 <td>
                     <a href="{{ path('app_post_show', {'id': post.id}) }}">Show</a>
                     <a href="{{ path('app_post_edit', {'id': post.id}) }}">Edit</a>
@@ -39,6 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_post_new') }}">Create new</a>
 {% endblock %}
