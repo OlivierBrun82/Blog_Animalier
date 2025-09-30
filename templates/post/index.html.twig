@@ -10,6 +10,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Type</th>
                 <th>Pseudo</th>
                 <th>Titre</th>
                 <th>Post</th>
@@ -21,6 +22,7 @@
         <tbody>
         {% for post in posts %}
             <tr>
+                <td>{{ post.type ? post.type.name : 'pas de type' }}</td>
                 <td>{{ post.name }}</td>
                 <td>{{ post.title }}.</td>
                 <td>{{ post.content }}.</td>
