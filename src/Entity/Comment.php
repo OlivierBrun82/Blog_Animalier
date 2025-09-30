@@ -26,6 +26,9 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?Post $post = null;
 
+    #[ORM\Column(length: 50)]
+    private ?string $name = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -75,6 +78,18 @@ class Comment
     public function setPost(?Post $post): static
     {
         $this->post = $post;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
 
         return $this;
     }
