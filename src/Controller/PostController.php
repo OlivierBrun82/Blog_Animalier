@@ -30,6 +30,14 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get("img")->getData();
+            if($file){
+                $newFileName=time() . "-" . $file->getClientOriginalName();
+                
+                $file->move($this->getParameter("article_dir"), $newFileName);
+
+                $post->setImg($newFileName);
+            }
             $entityManager->persist($post);
             $entityManager->flush();
 
