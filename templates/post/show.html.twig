@@ -8,6 +8,10 @@
     <table class="table">
         <tbody>
             <tr>
+                <th>Genre: </th>
+                <td>{{ post.type ? post.type.name : 'pas de type' }}</td>
+            </tr>
+            <tr>
                 <th>Titre: </th>
                 <td>{{ post.title }}</td>
             </tr>
