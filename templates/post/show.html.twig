@@ -20,6 +20,11 @@
                 <td>{{ post.name }}</td>
             </tr>
             <tr>
+                <th>Image</th>
+                <img src="{{ asset('upload/images/' ~ post.img) }}" alt="image">
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
                 <th>Crée le: </th>
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
