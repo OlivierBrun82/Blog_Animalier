@@ -46,6 +46,8 @@ class Post
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+
+        $this->createdAt = new \DateTimeImmutable('now', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
