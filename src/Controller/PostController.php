@@ -30,11 +30,12 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $file = $form->get("img")->getData();
             if($file){
                 $newFileName=time() . "-" . $file->getClientOriginalName();
                 
-                $file->move($this->getParameter("article_dir"), $newFileName);
+                $file->move($this->getParameter("images_dir"), $newFileName);
 
                 $post->setImg($newFileName);
             }
