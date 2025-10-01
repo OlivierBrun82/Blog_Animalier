@@ -18,6 +18,7 @@ final class PostController extends AbstractController
     public function index(PostRepository $postRepository): Response
     {
         return $this->render('post/index.html.twig', [
+            'show_overlay' => false,
             'posts' => $postRepository->findAll(),
         ]);
     }
@@ -30,6 +31,7 @@ final class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -42,11 +44,20 @@ final class PostController extends AbstractController
         ]);
     }
 
+    // #[Route(name: 'app_post_show', methods: ['GET'])]
+    // public function show(Post $post): Response
+    // {
+    //     return $this->render('post/index.html.twig', [
+    //         'show_overlay' => true,
+    //     ]);
+    // }
+
     #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
-        return $this->render('post/show.html.twig', [
-            'post' => $post,
+        return $this->render('base.html.twig', [
+            'show_overlay' => true,
+            'posts' => [$post], // important si ton twig boucle sur posts
         ]);
     }
 
@@ -71,7 +82,7 @@ final class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_delete', methods: ['POST'])]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$post->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $post->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($post);
             $entityManager->flush();
         }

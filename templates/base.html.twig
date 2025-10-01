@@ -1,17 +1,62 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>"> {% block stylesheets %}{% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+		{% block javascripts %}
+			{% block importmap %}
+				{{ importmap('app') }}
+			{% endblock %}
+		{% endblock %}
+	</head>
+	<section id="overlay">
+		{% block overlay %}
+			<h1>Post</h1>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Id</th>s
+						<td>{{ post.id }}</td>
+					</tr>
+					<tr>
+						<th>Name</th>
+						<td>{{ post.name }}</td>
+					</tr>
+					<tr>
+						<th>Content</th>
+						<td>{{ post.content }}</td>
+					</tr>
+					<tr>
+						<th>CreatedAt</th>
+						<td>{{ post.createdAt ? post.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					</tr>
+					<tr>
+						<th>UpdatedAt</th>
+						<td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Title</th>
+						<td>{{ post.title }}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<a href="{{ path('app_post_index') }}">back to list</a>
+
+			<a href="{{ path('app_post_edit', {'id': post.id}) }}">edit</a>
+
+			{{ include('post/_delete_form.html.twig') }}
+		{% endblock %}
+	</section>
+
+	<body>
+		{% block body %}{% endblock %}
+	</body>
+
+	<footer></footer>
 </html>

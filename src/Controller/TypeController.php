@@ -6,6 +6,7 @@ use App\Entity\Type;
 use App\Form\TypeType;
 use App\Repository\TypeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use DOMDocument;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ final class TypeController extends AbstractController
     public function index(TypeRepository $typeRepository): Response
     {
         return $this->render('type/index.html.twig', [
+            'show_overlay' => false,
             'types' => $typeRepository->findAll(),
         ]);
     }
@@ -42,13 +44,14 @@ final class TypeController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_type_show', methods: ['GET'])]
+    #[Route(name: 'app_type_show', methods: ['GET'])]
     public function show(Type $type): Response
     {
-        return $this->render('type/show.html.twig', [
-            'type' => $type,
+        return $this->render('base.html.twig', [
+            'show_overlay' => true,
         ]);
     }
+    
 
     #[Route('/{id}/edit', name: 'app_type_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Type $type, EntityManagerInterface $entityManager): Response
@@ -71,7 +74,7 @@ final class TypeController extends AbstractController
     #[Route('/{id}', name: 'app_type_delete', methods: ['POST'])]
     public function delete(Request $request, Type $type, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$type->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $type->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($type);
             $entityManager->flush();
         }
