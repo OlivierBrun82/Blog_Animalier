@@ -10,13 +10,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Type</th>
+                <th>Genre</th>
                 <th>Pseudo</th>
                 <th>Titre</th>
                 <th>Post</th>
                 <th>Crée le</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
+                <th>Mis à jour le</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,14 +29,14 @@
                 <td>{{ post.createdAt ? post.createdAt|date('Y-m-d') : '' }}.</td>
                 <td>{{ post.updatedAt ? post.updatedAt|date('Y-m-d') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_post_show', {'id': post.id}) }}">Show</a>
+                    <a href="{{ path('app_post_show', {'id': post.id}) }}">Voir</a>
                     <a href="{{ path('app_post_edit', {'id': post.id}) }}">Edit</a>
                     <a href="{{ path('app_comment_new') }}">Nouveau commentaire</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Pas de posts</td>
             </tr>
         {% endfor %}
         </tbody>

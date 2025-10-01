@@ -1,32 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Comment{% endblock %}
+{% block title %}Commentaire{% endblock %}
 
 {% block body %}
-    <h1>Comment</h1>
+    <h1>Commentaire</h1>
 
     <table class="table">
         <tbody>
+
             <tr>
-                <th>Id</th>
-                <td>{{ comment.id }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
+                <th>Commentaire :</th>
                 <td>{{ comment.content }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Crée le :</th>
                 <td>{{ comment.createdAt ? comment.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Mis à jour le :</th>
                 <td>{{ comment.updatedAt ? comment.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_comment_index') }}">back to list</a>
+    <a href="{{ path('app_comment_index') }}">Retourner à la liste des posts</a>
 
     <a href="{{ path('app_comment_edit', {'id': comment.id}) }}">edit</a>
 
