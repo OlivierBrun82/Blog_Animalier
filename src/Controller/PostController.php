@@ -51,7 +51,7 @@ final class PostController extends AbstractController
             'form' => $form,
         ]);
     }
-
+    
     // #[Route(name: 'app_post_show', methods: ['GET'])]
     // public function show(Post $post): Response
     // {
