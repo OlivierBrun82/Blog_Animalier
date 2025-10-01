@@ -63,7 +63,7 @@ final class PostController extends AbstractController
     #[Route('/{id}', name: 'app_post_show', methods: ['GET'])]
     public function show(Post $post): Response
     {
-        return $this->render('base.html.twig', [
+        return $this->render('post/index.html.twig', [
             'show_overlay' => true,
             'posts' => [$post], // important si ton twig boucle sur posts
         ]);

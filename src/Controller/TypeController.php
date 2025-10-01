@@ -47,7 +47,7 @@ final class TypeController extends AbstractController
     #[Route(name: 'app_type_show', methods: ['GET'])]
     public function show(Type $type): Response
     {
-        return $this->render('base.html.twig', [
+        return $this->render('post/index.html.twig', [
             'show_overlay' => true,
         ]);
     }
